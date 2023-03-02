@@ -1,45 +1,142 @@
 <!DOCTYPE html>
 <html>
 
-<body>
+<head>
     <title>Painting</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <h2>Painter entry Prashanthi Rayala</h2>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"
+        integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.min.js"
+        integrity="sha384-mQ93GR66B00ZXjt0YO5KlohRA5SY2XofN4zfuZxLkoj1gXtW8ANNCe9d5Y3eG5eD"
+        crossorigin="anonymous"></script>
+    <style>
+        * {
+            text-align: center;
+        }
 
-    <form>
-        <label for="form1_age"> The hidden painter name</label>
-        <input type="password" id="hiddenInput" value="Monet"> <br>
+        input {
+            margin: 5px;
+            border-radius: 10px;
+        }
 
-        <label for="form1_nick">Guess the painter</label>
-        <input type="text" id="checkInput"> <br>
+        input:focus {
+            outline: none;
+            box-sizing: content-box;
+            border: solid 3px rgb(250, 177, 66);
+        }
 
-        <input type="button" onclick="checkPainter()" value="Check the guess">
-    </form>
+        label {
+            font-weight: bolder;
+        }
 
-    <p id="result">Result will be Displayed Here</p>
+        #main {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            gap: 10px;
+            align-items: center;
+            height: 100vh;
+            background-color: rgb(218, 218, 218);
+        }
+
+        #result {
+            padding: 10px;
+            border-radius: 10px;
+            margin: 0 auto;
+            width: fit-content;
+            color: white;
+            background-color: rgb(169, 100, 10);
+        }
+    </style>
+</head>
+
+<body>
+
+    <div id="main">
+        <h2>Painter entry Prashanthi Rayala</h2>
+
+        <form>
+            <label for="form1_age"> The hidden painter name</label>
+            <input type="password" id="hiddenInput" value="Monet"> <br>
+
+            <label for="form1_nick">Guess the painter</label>
+            <input type="text" id="checkInput"> <br>
+
+            <button type="button" style="margin: 10px;" class="btn btn-dark" onclick="checkPainter()" id="clicker">Check
+                the
+                guess</button>
+        </form>
+
+        <p id="result">Result will be Displayed Here</p>
+        <div><img src="RESTIO.jfif" alt="RImage" style="margin: 10px;" width="100" height="100" id="pic"
+                onclick="selectImage()"> </div>
+    </div>
 
     <script>
         var good = 0;
         var oops = 0;
+        useImage = 1;
+        wrongCount = 0;
 
+
+        function nomore() {
+            alert('Sorry, ran out of guesses.')
+        }
         function checkPainter() {
-            
+
             console.log("Getting form values")
             hval = document.getElementById("hiddenInput").value
             checkValue = document.getElementById("checkInput").value
-            if(hval==checkValue){
+            if (hval == checkValue) {
+                wrongCount = 0;
                 alert("You got it right")
                 good++
 
             }
-            else{
+            else {
                 alert("Sorry")
+                wrongCount++
                 oops++
             }
+            if (wrongCount >= 10) {
+                document.getElementById('clicker').onclick = nomore
+                nomore()
+            }
             out = document.getElementById("result")
-            out.innerHTML = "Good count is "+good+"  Oops count is "+oops
+            out.innerHTML = "Good count is " + good + "  Oops count is " + oops
         }
+
+        var useImage = 1;
+        function selectImage() {
+            switch (useImage) {
+                case 1:
+                    document.getElementById("pic").src = "RESTIO.jfif";
+                    useImage = 2;
+                    break;
+                case 2:
+                    document.getElementById("pic").src = "ABELIA.jfif";
+                    useImage = 3;
+                    break;
+                case 3:
+                    document.getElementById('pic').src = "YARROW.jfif";
+                    useImage = 1;
+                    break;
+                default:
+                    document.getElementById('pic').src = "YARROW.jfif";
+                    useImage = 1;
+            }
+
+        }
+
+
+
     </script>
+
 
 </body>
 

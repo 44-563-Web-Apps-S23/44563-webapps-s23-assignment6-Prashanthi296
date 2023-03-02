@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>
+        Candy Choosing
+    </title>
+    <style>
+        * {
+            text-align: center;
+        }
+
+        input {
+            margin: 5px;
+            border-radius: 10px;
+        }
+
+        input:focus {
+            outline: none;
+            box-sizing: content-box;
+            border: solid 3px rgb(250, 177, 66);
+        }
+
+        label {
+            font-weight: bolder;
+        }
+
+        #main {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            gap: 10px;
+            align-items: center;
+            height: 100vh;
+            background-color: rgb(218, 218, 218);
+        }
+
+        #result {
+            padding: 10px;
+            border-radius: 10px;
+            margin: 0 auto;
+            width: fit-content;
+            color: white;
+            background-color: rgb(169, 100, 10);
+        }
+    </style>
+</head>
+
+<body>
+
+    <h2>Prashanthi Rayala chooses candy</h2>
+
+    <form>
+        <label for="form1_age">Dark Chocolate</label>
+        <input type="checkbox" id="dark" name="form1_age" value="true"> <br>
+
+        <label for="form1_age">Nuts</label>
+        <input type="checkbox" id="Nuts" name="form1_age" value="true"> <br>
+
+        <label for="form1_nick">Chewy</label>
+        <input type="checkbox" id="Chewy" name="form1_nick" value="false"> <br>
+
+        <input type="button" onclick="selectBox()" value="Select a box">
+    </form>
+
+    <form>
+        <label for="form1_age">Enter the size</label>
+        <input type="text" id="size" name="form1_age" value="size"> <br>
+
+        <label for="form1_age">Enter price</label>
+        <input type="text" id="price" name="form1_age"> <br>
+
+        <input type="button" onclick="updateBox()" value="Update the box">
+    </form>
+    <p id="result">This text will be replaced </p>
+
+    <script>
+        var my_candy_box = {
+            dark: "",
+            nuts: "",
+            chewy: "",
+        }
+        function selectBox() {
+            console.log("came here");
+            (document.getElementById("dark").checked) ? my_candy_box.dark = "true" : my_candy_box.dark = "false";
+            (document.getElementById("Nuts").checked) ? my_candy_box.nuts = "true" : my_candy_box.nuts = "false";
+            (document.getElementById("Chewy").checked) ? my_candy_box.chewy = "true" : my_candy_box.chewy = "false"
+            result.innerHTML = JSON.stringify(my_candy_box)
+        }
+        function updateBox() {
+            let size = document.getElementById("size").value
+            let price = document.getElementById("price").value
+            console.log(price);
+            my_candy_box.size = size
+            my_candy_box.price = price
+            result.innerHTML = JSON.stringify(my_candy_box)
+        }
+    </script>
+
+</body>
+
+</html>

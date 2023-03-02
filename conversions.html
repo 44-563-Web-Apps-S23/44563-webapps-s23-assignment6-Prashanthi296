@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+
+<body>
+    <title>CONVERSIONS</title>
+    <style>
+        * {
+            text-align: center;
+        }
+
+        input {
+            margin: 5px;
+            border-radius: 10px;
+        }
+
+        input:focus {
+            outline: none;
+            box-sizing: content-box;
+            border: solid 3px rgb(250, 177, 66);
+        }
+
+        label {
+            font-weight: bolder;
+        }
+
+        #main {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            gap: 10px;
+            align-items: center;
+            height: 100vh;
+            background-color: rgb(218, 218, 218);
+        }
+
+        #result {
+            padding: 10px;
+            border-radius: 10px;
+            margin: 0 auto;
+            width: fit-content;
+            color: white;
+            background-color: rgb(169, 100, 10);
+        }
+    </style>
+    <h2>Prashanthi Rayala shows currency conversions</h2>
+
+    <form>
+        <label for="form1">Enter base amount</label>
+        <input type="number" id="form1" value=50> <br>
+
+        <label for="form2">Enter the conversion rate </label>
+        <input type="number" id="form2" value=35 autofocus> <br>
+
+        <input type="button" onclick="convert()" value="Show conversions">
+    </form>
+    <p id="result">This text will be replaced </p>
+
+    <form>
+        <input type="radio" id="rg1_red" name="color" value="mean" onclick="chooseOp()" >
+        <label for="rg1_red">average</label></br>
+
+        <input type="radio" id="rg1_blue" name="color" onclick="chooseOp()" value="maximum">
+        <label for="rg1_blue">max</label></br>
+
+        <input type="radio" id="rg1_green" name="color" onclick="chooseOp()" value="manimum">
+        <label for="rg1_green">min</label></br>
+
+    </form>
+    <p id="result2">This text will be replaced </p>
+
+
+    <script>
+        function chooseOp() {
+            var base = document.getElementById("form1").value
+            var conversion = document.getElementById("form2").value
+            var mean = document.getElementById("rg1_red")
+            var max = document.getElementById("rg1_blue")
+            var min = document.getElementById("rg1_green")
+            if (mean.checked == true) {
+                result2.innerHTML = `mean of ${base} and ${conversion} is ${(base + conversion) / 2}`
+            }
+            if (max.checked == true) {
+                (base > conversion) ? result2.innerHTML = `max of ${base} and ${conversion} is ${base}`  : result2.innerHTML = result2.innerHTML = `max of ${base} and ${conversion} is ${conversion}`
+
+            }
+            if (min.checked == true) {
+                (base < conversion) ? result2.innerHTML = `min of ${base} and ${conversion} is ${base}`  : result2.innerHTML = result2.innerHTML = `min of ${base} and ${conversion} is ${conversion}`
+            }
+        }
+        function convert() {
+            console.log("Getting form values")
+            var base = document.getElementById("form1").value
+            var conversion = document.getElementById("form2").value
+            var toShow = ""
+            for (let i = 0; i < 5; i++) {
+                dv = (((Math.pow(2, i)) * base) * conversion)
+                toShow = toShow + `${((i + 1) * base)} is ${Math.round(dv * 10) / 10}; `
+            }
+            result.innerHTML = "Converstions are : " + toShow
+        }
+    </script>
+
+</body>
+
+</html>
